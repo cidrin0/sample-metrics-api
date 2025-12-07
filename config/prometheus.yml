@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 5s # time to pull
+
+scrape_configs:
+  - job_name: "metrics-api"
+    metrics_path: "/actuator/prometheus"
+    static_configs:
+      - targets: ["host.docker.internal:8080"] # ip do pod docker or dns (nginx)
+        labels:
+          application: "metrics-api"

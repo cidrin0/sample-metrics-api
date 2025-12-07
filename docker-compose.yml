@@ -1,0 +1,37 @@
+networks:
+  ma-network:
+    driver: bridge
+
+volumes:
+  prometheus_data:
+
+services:
+  grafana:
+    image: grafana/grafana:latest
+    volumes:
+      - "$PWD/data:/var/lib/grafana" # avoid losing data by down container, using bind path by user docker permisison
+    ports:
+      - "3000:3000"
+    networks:
+      - ma-network
+
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./config/prometheus.yml:/etc/prometheus/prometheus.yml # ref config scrap metrics to pod
+      - prometheus_data:/prometheus # volume to keep data from restarts
+    networks:
+      - ma-network
+    ports:
+      - "9090:9090"
+
+
+  metrics-api: # build local image from jar
+    build:
+      context: .  # Directory to build Docker image from.
+      dockerfile: Dockerfile  # Dockerfile to use for building the image.
+    ports:
+      - "8080:8080"  # Maps port 8080 in the container to port 18080 on the host.
+
+
+

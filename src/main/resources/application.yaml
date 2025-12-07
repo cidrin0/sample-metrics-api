@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: metrics-api
+
+server:
+  port: 8080
+  shutdown: graceful
+
+# Metrics
+management:
+  endpoints:
+    enabled-by-default: false # desabilita background metricas
+    web:
+      exposure:
+        include: "health,prometheus,metrics" # expoem o endpoint so das metricas habilitadas
+  endpoint:
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true
+    health:
+      enabled: true
+      show-details: always
+  server:
+    port: 8080 # porta do health/prometheus (heartbeat api)
