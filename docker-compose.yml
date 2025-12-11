@@ -8,8 +8,8 @@ volumes:
 services:
   grafana:
     image: grafana/grafana:latest
-    volumes:
-      - "$PWD/data:/var/lib/grafana" # avoid losing data by down container, using bind path by user docker permisison
+#    volumes:
+#      - "$PWD/data:/var/lib/grafana" # avoid losing data by down container, using bind path by user docker permisison
     ports:
       - "3000:3000"
     networks:

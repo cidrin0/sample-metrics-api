@@ -1,10 +1,10 @@
-package br.com.grafana.spring_sample.sample_metrics_api;
+package br.com.grafana.sma;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SampleMetricsApiApplicationTests {
+class SampleMetricsApplicationTests {
 
 	@Test
 	void contextLoads() {
