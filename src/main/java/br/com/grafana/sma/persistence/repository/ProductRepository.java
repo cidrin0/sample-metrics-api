@@ -1,12 +1,16 @@
 package br.com.grafana.sma.persistence.repository;
 
 import br.com.grafana.sma.persistence.entity.ProductEntity;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public class ProductRepository {
+@Repository
+public interface ProductRepository extends CrudRepository<ProductEntity, Long> {
 
-    public List<ProductEntity> searchProducts() {
-        return null;
-    }
+    @Query("SELECT p FROM Product p")
+    List<ProductEntity> findAllProducts();
+
 }

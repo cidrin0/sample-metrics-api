@@ -3,13 +3,17 @@ networks:
     driver: bridge
 
 volumes:
+  grafana_data:
   prometheus_data:
+  postgres_data:
 
 services:
   grafana:
     image: grafana/grafana:latest
-#    volumes:
-#      - "$PWD/data:/var/lib/grafana" # avoid losing data by down container, using bind path by user docker permisison
+    volumes:
+      - grafana_data:/grafana
+#   volumes:
+#     - "$PWD/data:/var/lib/grafana" # avoid losing data by down container, using bind path by user docker permisison
     ports:
       - "3000:3000"
     networks:
@@ -25,6 +29,17 @@ services:
     ports:
       - "9090:9090"
 
+  db:
+    image: postgres:15.15-trixie
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: product_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
 
   metrics-api: # build local image from jar
     build:

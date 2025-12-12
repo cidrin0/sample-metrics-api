@@ -12,8 +12,8 @@ public class Product {
     public final Price price;
 
     public Product(ProductEntity productEntity) {
-        this.name = new Name(productEntity.name);
-        this.description = new Description(productEntity.description);
-        this.price = new Price(productEntity.price);
+        this.name = new Name(productEntity.getName());
+        this.description = new Description(productEntity.getDescription());
+        this.price = new Price(productEntity.getPrice());
     }
 }
