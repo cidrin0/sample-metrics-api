@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity(name = "Product")
 public class ProductEntity {
@@ -12,10 +13,13 @@ public class ProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false, length = 100)
+    private UUID code;
+
     @Column(nullable = false, length = 70)
     private String name;
 
-    @Column(nullable = false, length = 200)
+    @Column(nullable = true, length = 200)
     private String description;
 
     @Column(nullable = false)
@@ -27,9 +31,13 @@ public class ProductEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
+    @Column(nullable = false)
+    private Boolean active;
+
     @PrePersist
     public void prePersist() {
         this.createdAt = LocalDateTime.now();
+        this.active = true;
     }
 
     @PreUpdate
@@ -59,5 +67,13 @@ public class ProductEntity {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public UUID getCode() {
+        return code;
+    }
+
+    public void setCode(UUID code) {
+        this.code = code;
     }
 }

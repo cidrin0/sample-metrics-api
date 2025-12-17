@@ -40,13 +40,13 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-
-  metrics-api: # build local image from jar
-    build:
-      context: .  # Directory to build Docker image from.
-      dockerfile: Dockerfile  # Dockerfile to use for building the image.
-    ports:
-      - "8080:8080"  # Maps port 8080 in the container to port 18080 on the host.
+#
+#  metrics-api: # build local image from jar
+#    build:
+#      context: .  # Directory to build Docker image from.
+#      dockerfile: Dockerfile  # Dockerfile to use for building the image.
+#    ports:
+#      - "8080:8080"  # Maps port 8080 in the container to port 18080 on the host.
 
 
 

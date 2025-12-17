@@ -1,4 +1,11 @@
 package br.com.grafana.sma.api.resource.request;
 
-public class CreateProductRequest {
+import java.math.BigDecimal;
+
+public record CreateProductRequest(
+        String name,
+        String description,
+        BigDecimal price
+) {
+
 }
