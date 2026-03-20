@@ -66,7 +66,7 @@ public class ProductResource {
         return ResponseEntity.created(
                 ServletUriComponentsBuilder
                         .fromCurrentContextPath()
-                        .path("/{code}")
+                        .path("/v1/products/{code}")
                         .buildAndExpand(product.code)
                         .toUri()
         ).build();

@@ -11,8 +11,8 @@ public class ProductResponse {
 
     public ProductResponse(Product product) {
         this.code = product.code.toString();
-        this.name = product.name.content();
-        this.description = product.description.content();
+        this.name = product.name;
+        this.description = product.description;
         this.price = product.price.toPlainString();
     }
 }

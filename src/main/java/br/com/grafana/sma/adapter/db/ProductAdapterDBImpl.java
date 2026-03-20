@@ -22,8 +22,8 @@ public class ProductAdapterDBImpl implements ProductAdapterDB {
     public ProductEntity toEntity(Product product) {
         ProductEntity productEntity = new ProductEntity();
         productEntity.setCode(product.code);
-        productEntity.setName(product.name.content());
-        productEntity.setDescription(product.description.content());
+        productEntity.setName(product.name);
+        productEntity.setDescription(product.description);
         productEntity.setPrice(product.price);
         return productEntity;
     }
