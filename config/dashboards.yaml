@@ -1,0 +1,11 @@
+# my-grafana-setup/grafana/provisioning/dashboards.yaml
+apiVersion: 1
+providers:
+  - name: 'My Provisioned Dashboards' # A unique name for the provider
+    folder: 'My Dashboards Folder'    # Name of the folder in Grafana UI
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 10         # How often Grafana scans for updates
+    allowUiUpdates: true
+    options:
+      path: /etc/grafana/dashboards  # The path inside the Docker container

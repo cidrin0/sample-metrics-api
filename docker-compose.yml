@@ -1,5 +1,7 @@
 networks:
-  ma-network:
+  front-end:
+    driver: bridge
+  back-end:
     driver: bridge
 
 volumes:
@@ -11,13 +13,15 @@ services:
   grafana:
     image: grafana/grafana:latest
     volumes:
-      - grafana_data:/grafana
+      - ./config/prometheus_ds.yml:/etc/grafana/provisioning/datasources/prometheus_ds.yml
+      - ./config/dashboards.yaml:/etc/grafana/provisioning/dashboards/dashboards.yaml
+      - ./config/dashboards:/etc/grafana/dashboards
 #   volumes:
 #     - "$PWD/data:/var/lib/grafana" # avoid losing data by down container, using bind path by user docker permisison
     ports:
       - "3000:3000"
     networks:
-      - ma-network
+      - front-end
 
   prometheus:
     image: prom/prometheus:latest
@@ -25,7 +29,7 @@ services:
       - ./config/prometheus.yml:/etc/prometheus/prometheus.yml # ref config scrap metrics to pod
       - prometheus_data:/prometheus # volume to keep data from restarts
     networks:
-      - ma-network
+      - front-end
     ports:
       - "9090:9090"
 
@@ -40,13 +44,20 @@ services:
       - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-#
-#  metrics-api: # build local image from jar
-#    build:
-#      context: .  # Directory to build Docker image from.
-#      dockerfile: Dockerfile  # Dockerfile to use for building the image.
-#    ports:
-#      - "8080:8080"  # Maps port 8080 in the container to port 18080 on the host.
+    networks:
+      - back-end
+
+  metrics-api: # build local image from jar
+    build:
+      context: .  # Directory to build Docker image from.
+      dockerfile: Dockerfile  # Dockerfile to use for building the image.
+    ports:
+      - "8080:8080"  # Maps port 8080 in the container to port 18080 on the host.
+    networks:
+      - front-end
+      - back-end
+    environment:
+      DATABASE_HOST: "db"
 
 
 
