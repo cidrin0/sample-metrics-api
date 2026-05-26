@@ -38,3 +38,16 @@ Checklist mínimo antes de PR
 
 Contato
 - Mantenha mudanças pequenas e peça revisão humana em PRs que toquem infraestrutura ou segurança.
+
+Análise rápida e ações esperadas
+- Este repositório não possui CI configurado; antes de propor mudanças amplas, executar localmente:
+	- `./gradlew build`
+	- `./gradlew bootRun` ou `docker-compose up --build`
+	- Verificar `/actuator` e `/actuator/prometheus` respondem 200
+- Verifique se há testes novos e garanta cobertura mínima para alterações críticas.
+
+O que automatizar
+- Run formatter and static analysis (SpotBugs/Checkstyle) before PR.
+- Run smoke tests (curl /actuator and /actuator/prometheus) in CI pipeline.
+
+Nota: siga `CONTRIBUTING.md` quando houver (ainda a ser criado) para regras específicas de commit e PR.

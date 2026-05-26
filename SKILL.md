@@ -24,3 +24,13 @@ Where to look
 - Classe principal: src/main/java/br/com/grafana/sma/SampleMetricsApplication.java
 - Configurações: src/main/resources/application.yaml
 - Docker orchestrator: docker-compose.yml
+
+Dívidas técnicas identificadas
+- Falta de CI (integrar build e smoke tests).  
+- Ausência de migrations versionadas (Flyway/Liquibase) — atualmente JPA `ddl-auto` controla schema.  
+- Cobertura de testes limitada; adicionar testes unitários e integração para os usecases principais.  
+
+Sugestões operacionais
+- Criar job CI que execute `./gradlew build` e rode smoke tests em um serviço Docker Compose.  
+- Adicionar `CONTRIBUTING.md` e `CODE_OF_CONDUCT.md` para facilitar contribuições.  
+- Considerar usar `spring.profiles` para separar configurações dev/ci/prod e evitar `create-drop` em perfis errados.

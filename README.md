@@ -165,3 +165,23 @@ Este repositório inclui arquivos de instruções para automações e colaborado
 
 Siga as instruções nestes arquivos antes de submeter mudanças significativas.
 
+## Análise rápida do projeto (varredura automática)
+
+Resumo das observações realizadas em 2026-05-26:
+
+- Estrutura: código organizado por camada (api/resource, core/usecase, persistence/entity, adapter). Bom isolamento de responsabilidades.
+- Observabilidade: Micrometer + Actuator + Prometheus e Grafana já configurados e expostos em `/actuator/prometheus`.
+- Segurança/configuração: credenciais inicialmente em texto foram externalizadas para `.env` (veja `.env.example`) e `.gitignore` atualizado.
+- Persistência: `spring.jpa.hibernate.ddl-auto` foi alterado para `update` para evitar perda de dados em ambientes de dev/integração; recomenda-se usar migrações (Flyway/Liquibase) para ambientes controlados.
+- Testes & CI: não há pipelines CI configurados e existem poucas (ou nenhuma) suites de teste automatizado no repositório. Recomenda-se adicionar testes unitários e integração, e um job CI básico (build + smoke tests).
+
+Recomendações prioritárias (próximos passos):
+
+1. Adicionar CI (GitHub Actions, GitLab CI) que execute `./gradlew build` e smoke tests contra o serviço em um job Docker Compose.
+2. Adotar migrações de banco (Flyway ou Liquibase) em vez de `ddl-auto` em ambientes persistentes.
+3. Implementar testes de integração que validem `/actuator` e `/actuator/prometheus` e fluxos principais (Create/Search/Delete products).
+4. Revisar dashboards em `config/dashboards/` e versioná-los com semântica de alterações (ex: dashboard-11378-v2.json).
+5. Adicionar um `CONTRIBUTING.md` com fluxo de PR, revisão e padrões.
+
+Se desejar, posso criar os arquivos iniciais: um workflow GitHub Actions básico, `CONTRIBUTING.md`, e um setup de Flyway com um migration inicial. Deseja que eu gere esses artefatos? (responda sim para criar). 
+
