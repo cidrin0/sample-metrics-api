@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-smoke:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: admin
+          POSTGRES_DB: product_db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd="pg_isready -U admin" --health-interval=10s --health-timeout=5s --health-retries=5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: temurin
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Build
+        env:
+          DATABASE_HOST: localhost
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: admin
+        run: |
+          ./gradlew build -x test --no-daemon
+
+      - name: Start application (background)
+        env:
+          DATABASE_HOST: localhost
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: admin
+        run: |
+          nohup ./gradlew bootRun &
+          sleep 15
+
+      - name: Smoke tests
+        run: |
+          curl -f http://localhost:8080/actuator/health
+          curl -f http://localhost:8080/actuator/prometheus
+
+      - name: Teardown
+        run: |
+          pkill -f 'gradle' || true
