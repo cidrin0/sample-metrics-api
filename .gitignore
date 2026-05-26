@@ -36,6 +36,9 @@ out/
 ### VS Code ###
 .vscode/
 
+### Env files ###
+.env
+
 ### Grafana K8s ###
 data/
 

@@ -78,6 +78,13 @@ The project includes a **docker-compose.yml** that starts:
 docker-compose up --build
 ```
 
+Before running, copy `.env.example` to `.env` and edit secrets if needed:
+
+```bash
+cp .env.example .env
+# edit .env (do not commit)
+```
+
 ### **3. Access the Services**
 
 | Service     | URL                                            |
@@ -141,4 +148,20 @@ https://grafana.com/grafana/dashboards/
 * Include dashboards in Grafana provisioning
 * Add OTLP collector (Optional OpenTelemetry integration)
 * Enable distributed tracing
+
+---
+
+## Arquivos de instruções (novo)
+
+Este repositório inclui arquivos de instruções para automações e colaboradores:
+
+- copilot-instructions.md — regras e checklist para assistentes automáticos.  
+- .prompt.md — prompts reutilizáveis para tarefas comuns.  
+- .agent.md — regras operacionais para agentes automatizados.  
+- SKILL.md — visão arquitetural e pontos críticos.  
+- .instructions.md — passos rápidos para rodar e validar localmente.  
+- AGENTS.md — responsabilidades de agentes e gatilhos.  
+- .env.example — exemplo de variáveis de ambiente (sem segredos).
+
+Siga as instruções nestes arquivos antes de submeter mudanças significativas.
 
