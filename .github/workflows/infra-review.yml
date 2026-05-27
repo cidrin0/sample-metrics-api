@@ -8,7 +8,7 @@ jobs:
   label-infra:
     runs-on: ubuntu-latest
     permissions:
-      issues: write
+      issues: read
       pull-requests: read
     steps:
       - uses: actions/checkout@v4
