@@ -46,3 +46,10 @@ Este documento descreve como você pode colaborar de forma eficiente e segura.
 - Explique o propósito do PR.
 - Liste os arquivos alterados e o impacto esperado.
 - Mencione se a mudança exige revisão de segurança, arquitetura ou dados.
+
+## Política Plan-First (agentes)
+
+Antes de mudanças significativas de código, arquitetura ou infraestrutura, crie um plano em agents/plans/ usando agents/plans/plan-template.md. Use o script ./agents/plan-and-commit.sh -p <plano> -m "mensagem" para revisar o plano e o diff antes de commitar. Commits que alterem infraestrutura, segurança ou design devem mencionar o plano no PR e podem requerer revisão humana adicional.
+
+Consulte agents/README.md para detalhes sobre agentes, gatilhos e políticas relacionadas.
+
