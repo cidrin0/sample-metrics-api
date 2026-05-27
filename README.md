@@ -162,6 +162,8 @@ Este repositório inclui arquivos de instruções para automações e colaborado
 - .instructions.md — passos rápidos para rodar e validar localmente.  
 - AGENTS.md — responsabilidades de agentes e gatilhos.  
 - .env.example — exemplo de variáveis de ambiente (sem segredos).
+- CONTRIBUTING.md — guia de contribuição e regras de PR.
+- CODE_OF_CONDUCT.md — padrão de comportamento para colaboradores.
 
 Siga as instruções nestes arquivos antes de submeter mudanças significativas.
 
