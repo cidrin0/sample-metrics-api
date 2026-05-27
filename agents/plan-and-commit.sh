@@ -74,11 +74,11 @@ fi
 
 # Stage all and commit
 git add -A
-COMMIT_SHA=$(git commit -m "$MSG" || true)
-if [ -z "$COMMIT_SHA" ]; then
-  echo "Sem alterações para commitar."
+if git commit -m "$MSG"; then
+  COMMIT_SHA=$(git rev-parse HEAD)
+  echo "Commit realizado: $COMMIT_SHA"
 else
-  echo "Commit realizado."
+  echo "Sem alterações para commitar."
 fi
 
 echo "Done."

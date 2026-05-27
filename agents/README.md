@@ -17,3 +17,8 @@ Política obrigatória (plan-first e diff preview)
 - Usar ./agents/plan-and-commit.sh -p <caminho-do-plano> -m "mensagem" para exibir o plano e o diff antes de commitar. O script pedirá confirmação explícita; sem confirmação, o commit é abortado.
 - Revisões automáticas e CI continuam; esta política garante visibilidade humana e rastreabilidade das decisões.
 
+- Planos: um template de plano está disponível em agents/plans/plan-template.md — salve seus planos em agents/plans/ e use ./agents/plan-and-commit.sh para apresentação do plano e do diff antes do commit.
+
+- Atualização do CONTRIBUTING.md: este repositório referencia a política 'plan-first' e o uso de ./agents/plan-and-commit.sh para commits que alteram código, infraestrutura ou design; veja CONTRIBUTING.md para detalhes.
+
+
