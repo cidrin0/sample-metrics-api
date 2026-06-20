@@ -1,31 +1,38 @@
-# Plano: <título curto>
+# Plan: <short title>
 
-Autor: <seu nome>  
-Data: <YYYY-MM-DD>
+**Author:** <your name>  
+**Date:** <YYYY-MM-DD>
 
-Resumo
-- Objetivo: (1-2 linhas)
-- Motivação: por que esta mudança é necessária
+## Summary
 
-Escopo
-- O que será alterado (arquivos/serviços/comportamento)
-- O que NÃO será alterado
+- **Objective:** (1-2 lines)
+- **Motivation:** why this change is necessary
 
-Impacto e riscos
-- Impacto esperado em runtime, banco de dados, compatibilidade
-- Riscos conhecidos e mitigação
+## Scope
 
-Passos de implementação
-1. Passo 1 — descrever detalhes
-2. Passo 2 — migrar dados / scripts de migração
-3. Testes a executar (unidade/integração/smoke)
+- What will be changed (files/services/behavior)
+- What will NOT be changed
 
-Rollout e rollback
-- Estratégia de deploy (gradual, blue/green, etc.)
-- Critérios de rollback
+## Impact and Risks
 
-Checks locais
-- Comandos para validar localmente (build/testes/health checks)
+- Expected impact on runtime, database, compatibility
+- Known risks and mitigation
 
-Notas adicionais
-- Dependências externas, migrations, cron jobs, etc.
+## Implementation Steps
+
+1. Step 1 — describe details
+2. Step 2 — migrate data / migration scripts
+3. Tests to run (unit/integration/smoke)
+
+## Rollout and Rollback
+
+- Deployment strategy (gradual, blue/green, etc.)
+- Rollback criteria
+
+## Local Checks
+
+- Commands to validate locally (build/tests/health checks)
+
+## Additional Notes
+
+- External dependencies, migrations, cron jobs, etc.
