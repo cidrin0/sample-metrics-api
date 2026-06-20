@@ -1,25 +1,31 @@
-Agente: test-runner
+# Agent: Test Runner
 
-Objetivo: Gerar, executar e manter suites de testes unitários e de integração.
+**Objective:** Generate, execute, and maintain unit and integration test suites.
 
-Responsabilidades:
-- Criar templates de testes unitários com JUnit/Jupiter e testes de integração usando Testcontainers ou Docker Compose quando necessário.
-- Executar ./gradlew test e ./gradlew integrationTest (se existir) e reportar falhas com trace e sugestão de correção.
-- Escrever casos de teste que cubram fluxos críticos: endpoints /actuator, /actuator/prometheus, e principais CRUDs.
+## Responsibilities
 
-Habilidades:
+- Create unit test templates with JUnit/Jupiter and integration tests using Testcontainers or Docker Compose when necessary.
+- Run ./gradlew test and ./gradlew integrationTest (if available) and report failures with trace and correction suggestion.
+- Write test cases that cover critical flows: /actuator, /actuator/prometheus endpoints, and main CRUDs.
+
+## Skills
+
 - JUnit, Mockito, Spring Boot Test, Testcontainers, Gradle test tasks.
 
-Gatilhos:
-- Changesets que toquem lógica de negócio ou integrações externas.
+## Triggers
 
-Saídas:
-- Relatório de testes (pass/fail), testes adicionados/modificados, e comandos para reproduzir localmente.
+- Changesets that touch business logic or external integrations.
 
-Exemplo de prompt:
-"Executar testes de integração do serviço usando docker-compose; se não existir, criar um teste de integração que sobe PostgreSQL via Testcontainers e verifica endpoint /actuator/prometheus." 
+## Outputs
 
-Política de planejamento e apresentação de diffs:
-- Plano de teste obrigatório: antes de adicionar ou alterar testes críticos, documentar o plano de teste (objetivos, ambientes, dados, comandos) em agents/plans/...
-- Apresentação de diffs: após gerar ou alterar código de teste, executar ./agents/plan-and-commit.sh para exibir o plano e o diff, solicitando aprovação antes do commit final.
-- Automação: o CI continuará rodando os testes automaticamente, mas commits devem seguir a política de aprovação local/PR baseada em plano.
+- Test report (pass/fail), tests added/modified, and commands to reproduce locally.
+
+## Example Prompt
+
+"Run service integration tests using docker-compose; if none exists, create an integration test that starts PostgreSQL via Testcontainers and verifies /actuator/prometheus endpoint."
+
+## Planning and Diff Preview Policy
+
+- **Mandatory test plan:** Before adding or changing critical tests, document the test plan (objectives, environments, data, commands) in agents/plans/...
+- **Diff presentation:** After generating or changing test code, run ./agents/plan-and-commit.sh to display the plan and diff, requesting approval before final commit.
+- **Automation:** CI will continue running tests automatically, but commits should follow the local/PR approval policy based on plan.

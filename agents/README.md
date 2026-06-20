@@ -1,24 +1,31 @@
-Agentes definidos para desenvolvimento do projeto
+# Agents Defined for Project Development
 
-Este diretório contém descrições e instruções de uso para agentes automáticos que suportam o ciclo de desenvolvimento.
+This directory contains descriptions and usage instructions for automated agents that support the development cycle.
 
-Agentes incluídos:
-- java-developer.md — Implementação e manutenção de código Java
-- code-reviewer.md — Revisão automática e comentários de PR
-- design-analyst.md — Análise de design e sugestões de arquitetura
-- test-runner.md — Execução e geração de testes unitários e de integração
+## Included Agents
 
-Uso
-- Consulte cada arquivo para regras, gatilhos e prompts recomendados.
-- Agentes são assistentes: mudanças críticas (infra, segurança, design) devem receber revisão humana.
+- **java-developer.md** — Java code implementation and maintenance
+- **code-reviewer.md** — Automatic PR review and comments
+- **design-analyst.md** — Design analysis and architecture suggestions
+- **test-runner.md** — Unit and integration test execution and generation
 
-Política obrigatória (plan-first e diff preview)
-- Antes de qualquer alteração, gerar um plano curto e salvo em agents/plans/<nome>-<timestamp>.md ou agents/last_plan.md.
-- Usar ./agents/plan-and-commit.sh -p <caminho-do-plano> -m "mensagem" para exibir o plano e o diff antes de commitar. O script pedirá confirmação explícita; sem confirmação, o commit é abortado.
-- Revisões automáticas e CI continuam; esta política garante visibilidade humana e rastreabilidade das decisões.
+## Usage
 
-- Planos: um template de plano está disponível em agents/plans/plan-template.md — salve seus planos em agents/plans/ e use ./agents/plan-and-commit.sh para apresentação do plano e do diff antes do commit.
+- Consult each file for rules, triggers, and recommended prompts.
+- Agents are assistants: critical changes (infrastructure, security, design) must receive human review.
 
-- Atualização do CONTRIBUTING.md: este repositório referencia a política 'plan-first' e o uso de ./agents/plan-and-commit.sh para commits que alteram código, infraestrutura ou design; veja CONTRIBUTING.md para detalhes.
+## Mandatory Policy (Plan-First and Diff Preview)
+
+- Before any change, generate a short plan and save it in agents/plans/<name>-<timestamp>.md or agents/last_plan.md.
+- Use ./agents/plan-and-commit.sh -p <path-to-plan> -m "message" to display the plan and diff before committing. The script will request explicit confirmation; without confirmation, the commit is aborted.
+- Automatic reviews and CI continue; this policy ensures human visibility and traceability of decisions.
+
+## Plans
+
+A plan template is available in agents/plans/plan-template.md — save your plans in agents/plans/ and use ./agents/plan-and-commit.sh to present the plan and diff before committing.
+
+## CONTRIBUTING.md Update
+
+This repository references the 'plan-first' policy and the use of ./agents/plan-and-commit.sh for commits that change code, infrastructure, or design; see CONTRIBUTING.md for details.
 
 

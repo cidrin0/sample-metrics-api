@@ -1,53 +1,66 @@
-Objetivo
-- Fornecer instruções curtas e precisas para assistentes automáticos (Copilot, subagents) e desenvolvedores humanos que fizerem edições no código.
+# Copilot Instructions
 
-Contexto do projeto
-- Projeto: Sample Spring Boot Metrics API
-- Linguagem / runtime: Java 21, Spring Boot 4, Gradle
-- Ponto de entrada: src/main/java/br/com/grafana/sma/SampleMetricsApplication.java
-- Endpoints importantes: /actuator, /actuator/prometheus, /swagger-ui.html
+## Objective
 
--
-Arquitetura de código (locais importantes)
-- Recursos REST: src/main/java/br/com/grafana/sma/api/resource (ex: ProductResource.java)
-- DTOs: src/main/java/br/com/grafana/sma/api/resource/request e /response
-- Casos de uso / lógica de negócio: src/main/java/br/com/grafana/sma/core/business/usecase
-- Entidades e persistência: src/main/java/br/com/grafana/sma/persistence/entity e repository/port
-- Adapters: src/main/java/br/com/grafana/sma/adapter (api e db)
+- Provide short and precise instructions for automated assistants (Copilot, subagents) and human developers who edit the code.
 
-Comandos úteis
+## Project Context
+
+- Project: Sample Spring Boot Metrics API
+- Language / Runtime: Java 21, Spring Boot 4, Gradle
+- Entry point: src/main/java/br/com/grafana/sma/SampleMetricsApplication.java
+- Important endpoints: /actuator, /actuator/prometheus, /swagger-ui.html
+
+## Code Architecture (Important Locations)
+
+- REST Resources: src/main/java/br/com/grafana/sma/api/resource (e.g., ProductResource.java)
+- DTOs: src/main/java/br/com/grafana/sma/api/resource/request and /response
+- Use Cases / Business Logic: src/main/java/br/com/grafana/sma/core/business/usecase
+- Entities and Persistence: src/main/java/br/com/grafana/sma/persistence/entity and repository/port
+- Adapters: src/main/java/br/com/grafana/sma/adapter (api and db)
+
+## Useful Commands
+
 - Build: ./gradlew build
-- Rodar local (sem Docker): ./gradlew bootRun
-- Rodar com Docker Compose: docker-compose up --build
+- Run locally (without Docker): ./gradlew bootRun
+- Run with Docker Compose: docker-compose up --build
 
-Regras gerais para edições automáticas
-- Priorize mudanças pequenas e reversíveis.
-- Sempre executar testes unitários/integration (se existirem) antes de propor merge.
-- Não introduzir credenciais ou segredos em código/commits.
-- Não alterar arquivos em /config/dashboards/* sem validar JSON no Grafana JSONLint.
+## General Rules for Automatic Edits
 
-Estilo de código
-- Siga as convenções Java padrão do projeto (formatador do IDE, sem comentários desnecessários).
-- Prefira nomes claros para métodos e variáveis.
+- Prioritize small and reversible changes.
+- Always run unit/integration tests (if any) before proposing merge.
+- Never introduce credentials or secrets in code/commits.
+- Do not modify files in /config/dashboards/* without validating JSON on Grafana JSONLint.
 
-Checklist mínimo antes de PR
-1. Build local: ./gradlew build (sem erros).
-2. Smoke test: endpoints /actuator e /actuator/prometheus respondem 200.
-3. Atualizar README.md se mudar comandos de run.
-4. Remover segredos e adicionar variáveis ao .env ou secret manager.
+## Code Style
 
-Contato
-- Mantenha mudanças pequenas e peça revisão humana em PRs que toquem infraestrutura ou segurança.
+- Follow standard Java conventions of the project (IDE formatter, no unnecessary comments).
+- Prefer clear names for methods and variables.
 
-Análise rápida e ações esperadas
-- Este repositório não possui CI configurado; antes de propor mudanças amplas, executar localmente:
-	- `./gradlew build`
-	- `./gradlew bootRun` ou `docker-compose up --build`
-	- Verificar `/actuator` e `/actuator/prometheus` respondem 200
-- Verifique se há testes novos e garanta cobertura mínima para alterações críticas.
+## Minimum Checklist Before PR
 
-O que automatizar
+1. Local build: ./gradlew build (no errors).
+2. Smoke test: endpoints /actuator and /actuator/prometheus respond 200.
+3. Update README.md if you change run commands.
+4. Remove secrets and add variables to .env or secret manager.
+
+## Contact
+
+- Keep changes small and request human review on PRs that touch infrastructure or security.
+
+## Quick Analysis and Expected Actions
+
+- This repository has no CI configured; before proposing broad changes, run locally:
+  - `./gradlew build`
+  - `./gradlew bootRun` or `docker-compose up --build`
+  - Check that `/actuator` and `/actuator/prometheus` respond 200
+- Check if there are new tests and ensure minimum coverage for critical changes.
+
+## What to Automate
+
 - Run formatter and static analysis (SpotBugs/Checkstyle) before PR.
 - Run smoke tests (curl /actuator and /actuator/prometheus) in CI pipeline.
 
-Nota: siga `CONTRIBUTING.md` quando houver (ainda a ser criado) para regras específicas de commit e PR.
+## Note
+
+Follow `CONTRIBUTING.md` when available (still to be created) for specific commit and PR rules.

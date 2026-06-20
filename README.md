@@ -151,39 +151,39 @@ https://grafana.com/grafana/dashboards/
 
 ---
 
-## Arquivos de instruções (novo)
+## Instruction Files (New)
 
-Este repositório inclui arquivos de instruções para automações e colaboradores:
+This repository includes instruction files for automation and contributors:
 
-- copilot-instructions.md — regras e checklist para assistentes automáticos.  
-- .prompt.md — prompts reutilizáveis para tarefas comuns.  
-- .agent.md — regras operacionais para agentes automatizados.  
-- SKILL.md — visão arquitetural e pontos críticos.  
-- .instructions.md — passos rápidos para rodar e validar localmente.  
-- AGENTS.md — responsabilidades de agentes e gatilhos.  
-- .env.example — exemplo de variáveis de ambiente (sem segredos).
-- CONTRIBUTING.md — guia de contribuição e regras de PR.
-- CODE_OF_CONDUCT.md — padrão de comportamento para colaboradores.
+- copilot-instructions.md — rules and checklist for automated assistants.
+- .prompt.md — reusable prompts for common tasks.
+- .agent.md — operational rules for automated agents.
+- SKILL.md — architectural overview and critical points.
+- .instructions.md — quick steps to run and validate locally.
+- AGENTS.md — agent responsibilities and triggers.
+- .env.example — example environment variables (no secrets).
+- CONTRIBUTING.md — contribution guide and PR rules.
+- CODE_OF_CONDUCT.md — behavior standards for contributors.
 
-Siga as instruções nestes arquivos antes de submeter mudanças significativas.
+Follow the instructions in these files before submitting significant changes.
 
-## Análise rápida do projeto (varredura automática)
+## Quick Project Analysis (Auto-scan)
 
-Resumo das observações realizadas em 2026-05-26:
+Summary of observations from 2026-05-26:
 
-- Estrutura: código organizado por camada (api/resource, core/usecase, persistence/entity, adapter). Bom isolamento de responsabilidades.
-- Observabilidade: Micrometer + Actuator + Prometheus e Grafana já configurados e expostos em `/actuator/prometheus`.
-- Segurança/configuração: credenciais inicialmente em texto foram externalizadas para `.env` (veja `.env.example`) e `.gitignore` atualizado.
-- Persistência: `spring.jpa.hibernate.ddl-auto` foi alterado para `update` para evitar perda de dados em ambientes de dev/integração; recomenda-se usar migrações (Flyway/Liquibase) para ambientes controlados.
-- Testes & CI: não há pipelines CI configurados e existem poucas (ou nenhuma) suites de teste automatizado no repositório. Recomenda-se adicionar testes unitários e integração, e um job CI básico (build + smoke tests).
+- Structure: Code organized by layer (api/resource, core/usecase, persistence/entity, adapter). Good separation of concerns.
+- Observability: Micrometer + Actuator + Prometheus and Grafana already configured and exposed at `/actuator/prometheus`.
+- Security/Configuration: Credentials initially in plain text have been externalized to `.env` (see `.env.example`) and `.gitignore` updated.
+- Persistence: `spring.jpa.hibernate.ddl-auto` changed to `update` to avoid data loss in dev/integration environments; using migrations (Flyway/Liquibase) is recommended for controlled environments.
+- Tests & CI: No CI pipelines configured and few (or no) automated test suites in the repository. Recommended to add unit and integration tests, and a basic CI job (build + smoke tests).
 
-Recomendações prioritárias (próximos passos):
+Priority recommendations (next steps):
 
-1. Adicionar CI (GitHub Actions, GitLab CI) que execute `./gradlew build` e smoke tests contra o serviço em um job Docker Compose.
-2. Adotar migrações de banco (Flyway ou Liquibase) em vez de `ddl-auto` em ambientes persistentes.
-3. Implementar testes de integração que validem `/actuator` e `/actuator/prometheus` e fluxos principais (Create/Search/Delete products).
-4. Revisar dashboards em `config/dashboards/` e versioná-los com semântica de alterações (ex: dashboard-11378-v2.json).
-5. Adicionar um `CONTRIBUTING.md` com fluxo de PR, revisão e padrões.
+1. Add CI (GitHub Actions, GitLab CI) that runs `./gradlew build` and smoke tests against the service in a Docker Compose job.
+2. Adopt database migrations (Flyway or Liquibase) instead of `ddl-auto` in persistent environments.
+3. Implement integration tests that validate `/actuator` and `/actuator/prometheus` and main flows (Create/Search/Delete products).
+4. Review dashboards in `config/dashboards/` and version them with semantic change notation (e.g., dashboard-11378-v2.json).
+5. Add a `CONTRIBUTING.md` with PR flow, review, and standards.
 
-Se desejar, posso criar os arquivos iniciais: um workflow GitHub Actions básico, `CONTRIBUTING.md`, e um setup de Flyway com um migration inicial. Deseja que eu gere esses artefatos? (responda sim para criar). 
+If desired, I can create initial files: a basic GitHub Actions workflow, `CONTRIBUTING.md`, and a Flyway setup with an initial migration. Would you like me to generate these artifacts? (answer yes to create). 
 

@@ -1,30 +1,36 @@
-Agente: java-developer
+# Agent: Java Developer
 
-Objetivo: Escrever, refatorar e manter código Java do projeto (Spring Boot 4, Java 21).
+**Objective:** Write, refactor, and maintain Java code for the project (Spring Boot 4, Java 21).
 
-Responsabilidades:
-- Implementar endpoints, serviços e repositórios seguindo a arquitetura existente (camadas api/core/persistence/adapter).
-- Escrever mudanças pequenas e testáveis; gerar commits com mensagens claras e unitárias.
-- Rodar build local com ./gradlew build e corrigir falhas de compilação/testes.
-- Propor e aplicar melhorias de desempenho e observabilidade usando Micrometer/Actuator.
+## Responsibilities
 
-Habilidades necessárias:
+- Implement endpoints, services, and repositories following the existing architecture (layers api/core/persistence/adapter).
+- Write small and testable changes; generate commits with clear and unitary messages.
+- Run local build with ./gradlew build and fix compilation/test failures.
+- Propose and apply performance and observability improvements using Micrometer/Actuator.
+
+## Required Skills
+
 - Java 21, Spring Boot 4, JPA, Flyway, Micrometer, Docker.
-- Familiaridade com Gradle wrapper e convenções do repositório.
+- Familiarity with Gradle wrapper and repository conventions.
 
-Gatilhos e entradas:
-- Issues/Tasks atribuídas com escopo claro.
-- Pull requests de manutenção menores (bugfix, feature pequena).
+## Triggers and Inputs
 
-Saídas esperadas:
-- Branch com commits pequenos e descriptivos.
-- Pull request com descrição, testes e instruções de validação.
+- Issues/Tasks assigned with clear scope.
+- Pull requests for smaller maintenance (bugfix, small feature).
 
-Exemplo de prompt (interno):
-"Implementar o endpoint POST /products que salva Product usando JPA. Escrever validações, camada de service e testes unitários e de integração. Rodar ./gradlew build e incluir resultados."
+## Expected Outputs
 
-Política de planejamento e apresentação de diffs:
-- Planejar antes de alterar: antes de qualquer mudança de código, escrever um plano sucinto (objetivo, motivação, arquivos a modificar, testes a executar). Salve o plano em agents/plans/<nome>-<timestamp>.md ou em agents/last_plan.md.
-- Aprovação: apresente o plano para revisão humana ou registre a aprovação no comentário do PR.
-- Diferença antes do commit: antes de commitar, execute ./agents/plan-and-commit.sh -p <caminho-do-plano> -m "mensagem de commit" (opcional: -b <branch>). O script exibirá o plano e o diff (git diff) e solicitará confirmação. Sem confirmação explícita, o commit será abortado.
-- Objetivo: garantir visibilidade, reduzir regressões e alinhar mudanças com o time.
+- Branch with small and descriptive commits.
+- Pull request with description, tests, and validation instructions.
+
+## Example Internal Prompt
+
+"Implement the POST /products endpoint that saves Product using JPA. Write validations, service layer, and unit and integration tests. Run ./gradlew build and include results."
+
+## Planning and Diff Preview Policy
+
+- **Plan before changing:** Before any code change, write a concise plan (objective, motivation, files to modify, tests to run). Save the plan in agents/plans/<name>-<timestamp>.md or agents/last_plan.md.
+- **Approval:** Present the plan for human review or record approval in the PR comment.
+- **Diff before commit:** Before committing, run ./agents/plan-and-commit.sh -p <path-to-plan> -m "commit message" (optional: -b <branch>). The script will display the plan and diff (git diff) and request confirmation. Without explicit confirmation, the commit will be aborted.
+- **Goal:** Ensure visibility, reduce regressions, and align changes with the team.
