@@ -7,10 +7,13 @@ import static java.math.RoundingMode.HALF_UP;
 public class Price extends BigDecimal {
 
     public Price(BigDecimal content) {
-        super(content.setScale(2, HALF_UP).toPlainString());
+        super(validateAndScale(content).toPlainString());
+    }
 
+    private static BigDecimal validateAndScale(BigDecimal content) {
         if (content.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("price must be greater than zero");
         }
+        return content.setScale(2, HALF_UP);
     }
 }
