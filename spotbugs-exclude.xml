@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FindBugsFilter>
+    <!-- Exclude generated code -->
+    <Match>
+        <Class name="~.*\..*\$.*"/>
+    </Match>
+
+    <!-- Exclude test classes -->
+    <Match>
+        <Class name="~.*\.Test.*"/>
+    </Match>
+
+    <Match>
+        <Class name="~.*\..*Tests?"/>
+    </Match>
+
+    <!-- Suppress specific bug patterns if needed -->
+    <!-- Example: Exclude NP_NULL_PARAM_DEREF warnings -->
+    <!-- <Match>
+        <Bug pattern="NP_NULL_PARAM_DEREF"/>
+    </Match> -->
+
+    <!-- Exclude false positives from Spring framework usage -->
+    <Match>
+        <Bug pattern="REC_CATCH_EXCEPTION"/>
+        <Class name="~.*Application.*"/>
+    </Match>
+</FindBugsFilter>

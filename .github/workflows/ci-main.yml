@@ -1,0 +1,139 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: admin
+          POSTGRES_DB: product_db
+        options: >-
+          --health-cmd="pg_isready -U admin"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: temurin
+
+      - name: Cache Gradle packages
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: Build JAR (without tests)
+        run: ./gradlew build -x test --no-daemon
+
+      - name: Run unit tests
+        run: ./gradlew test --no-daemon
+
+      - name: Run code quality checks
+        run: ./gradlew checkstyleMain spotbugsMain --no-daemon
+
+      - name: Generate coverage report
+        run: ./gradlew jacocoTestReport --no-daemon
+
+      - name: Run integration tests
+        env:
+          DATABASE_HOST: localhost
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: admin
+        run: ./gradlew integrationTest --no-daemon
+
+      - name: Start application for smoke tests
+        env:
+          DATABASE_HOST: localhost
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: admin
+        run: |
+          ./gradlew bootRun --no-daemon &
+          echo "Waiting for application to start..."
+          for i in {1..30}; do
+            if curl -f http://localhost:8080/actuator/health > /dev/null 2>&1; then
+              echo "Application started successfully"
+              exit 0
+            fi
+            echo "Attempt $i/30: Waiting for application..."
+            sleep 2
+          done
+          echo "Application failed to start within 60 seconds"
+          exit 1
+
+      - name: Smoke tests - Health endpoint
+        run: |
+          echo "Testing /actuator/health..."
+          curl -f http://localhost:8080/actuator/health || exit 1
+          echo "✓ Health endpoint OK"
+
+      - name: Smoke tests - Prometheus metrics
+        run: |
+          echo "Testing /actuator/prometheus..."
+          curl -f http://localhost:8080/actuator/prometheus || exit 1
+          echo "✓ Prometheus endpoint OK"
+
+      - name: Stop application
+        if: always()
+        run: |
+          pkill -f 'gradle bootRun' || true
+          sleep 2
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            build/test-results/
+            build/reports/tests/
+          retention-days: 30
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: build/reports/jacoco/
+          retention-days: 30
+
+      - name: Upload code quality reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-reports
+          path: |
+            build/reports/checkstyle/
+            build/reports/spotbugs/
+          retention-days: 30
+
+      - name: Upload JAR artifact
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: application-jar
+          path: build/libs/*.jar
+          retention-days: 60
