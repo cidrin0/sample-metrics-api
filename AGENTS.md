@@ -1,19 +1,19 @@
-Agentes e responsabilidades
-- Copilot / assistentes: sugerir mudanças de código, gerar testes, criar patches pequenos.
-- CI (quando existir): executar build, testes e linter.
-- Mantenedores humanos: revisar PRs que envolvam infra, segurança e design.
+Agents and Responsibilities
+- Copilot / assistants: suggest code changes, generate tests, create small patches.
+- CI (when it exists): run build, tests, and linter.
+- Human maintainers: review PRs involving infrastructure, security, and design.
 
-Gatilhos
-- Pull request para branch main → revisão humana obrigatória.
-- Commits trivial/format → podem ser auto-aprovados por formatação tool (se configurado).
+Triggers
+- Pull request to main branch → mandatory human review.
+- Trivial/format commits → can be auto-approved by formatting tool (if configured).
 
-Recomendações para automações
-- Pipeline CI: build + smoke tests + static analysis + publish build artifact (optionally).  
-- Bot de dependabot/renovate para manter libs atualizadas.
-- Auto-runner para validar dashboards JSON (Grafana JSONLint) quando arquivos em `config/dashboards/` mudarem.
+Recommendations for Automation
+- CI Pipeline: build + smoke tests + static analysis + publish build artifact (optionally).  
+- Dependabot/renovate bot to keep libraries updated.
+- Auto-runner to validate JSON dashboards (Grafana JSONLint) when files in `config/dashboards/` change.
 
-Política obrigatória para agentes:
-- Planejar antes de alterar: todo agente deve gerar um plano descrevendo a mudança antes de aplicar alterações (salvar em agents/plans/ ou agents/last_plan.md).
-- Exibir diffs antes do commit: usar o script agents/plan-and-commit.sh para apresentar o plano e o diff ao autor e obter confirmação explícita antes de commitar.
-- Mudanças de infra/segurança continuam exigindo revisão humana e serão marcadas pelo workflow infra-review.yml.
+Mandatory Policy for Agents:
+- Plan before making changes: every agent must generate a plan describing the change before applying modifications (save in agents/plans/ or agents/last_plan.md).
+- Display diffs before commit: use the agents/plan-and-commit.sh script to present the plan and diff to the author and get explicit confirmation before committing.
+- Infrastructure/security changes continue to require human review and will be flagged by the infra-review.yml workflow.
 

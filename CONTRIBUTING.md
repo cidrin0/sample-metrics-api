@@ -1,55 +1,55 @@
 # Contributing
 
-Obrigado por contribuir com o projeto Sample Spring Boot Metrics API!
-Este documento descreve como você pode colaborar de forma eficiente e segura.
+Thank you for contributing to the Sample Spring Boot Metrics API project!
+This document describes how you can collaborate efficiently and securely.
 
-## Como contribuir
+## How to Contribute
 
-1. Fork e clone este repositório.
-2. Crie uma branch de feature ou correção:
+1. Fork and clone this repository.
+2. Create a feature or fix branch:
    ```bash
-   git checkout -b feature/minha-melhoria
+   git checkout -b feature/my-improvement
    ```
-3. Execute o build localmente:
+3. Run the build locally:
    ```bash
    ./gradlew build
    ```
-4. Faça suas alterações e adicione testes sempre que possível.
-5. Antes de abrir o PR, rode:
+4. Make your changes and add tests whenever possible.
+5. Before opening the PR, run:
    - `./gradlew build`
-   - `./gradlew bootRun` (quando apropriado)
+   - `./gradlew bootRun` (when appropriate)
    - `curl -f http://localhost:8080/actuator/health`
    - `curl -f http://localhost:8080/actuator/prometheus`
-6. Abra um Pull Request para a branch `main` com descrição clara das mudanças.
+6. Open a Pull Request to the `main` branch with a clear description of the changes.
 
-## Padrões de código
+## Code Standards
 
-- Prefira nomes claros para classes, métodos e variáveis.
-- Siga as convenções Java do projeto.
-- Evite comentários desnecessários; o código deve ser legível por si só.
-- Ao alterar APIs públicas, atualize `OpenApiConfig.java` quando necessário.
+- Prefer clear names for classes, methods, and variables.
+- Follow the project's Java conventions.
+- Avoid unnecessary comments; code should be readable on its own.
+- When modifying public APIs, update `OpenApiConfig.java` as needed.
 
-## Testes
+## Testing
 
-- Adicione testes unitários e de integração sempre que possível.
-- Verifique se os testes existentes continuam passando.
-- Se incluir novos endpoints ou métricas, adicione smoke tests ou validação correspondente.
+- Add unit and integration tests whenever possible.
+- Verify that existing tests continue to pass.
+- If you add new endpoints or metrics, add smoke tests or corresponding validation.
 
-## Configuração e segredos
+## Configuration and Secrets
 
-- Use `.env.example` como modelo e nunca comite o arquivo `.env`.
-- Não inclua credenciais em código ou arquivos de configuração versionados.
-- Atualize `.gitignore` se precisar excluir novos arquivos de configuração local.
+- Use `.env.example` as a template and never commit the `.env` file.
+- Do not include credentials in code or versioned configuration files.
+- Update `.gitignore` if you need to exclude new local configuration files.
 
-## Pedido de revisão
+## Review Request
 
-- Explique o propósito do PR.
-- Liste os arquivos alterados e o impacto esperado.
-- Mencione se a mudança exige revisão de segurança, arquitetura ou dados.
+- Explain the purpose of the PR.
+- List the files changed and the expected impact.
+- Mention if the change requires security, architecture, or data review.
 
-## Política Plan-First (agentes)
+## Plan-First Policy (Agents)
 
-Antes de mudanças significativas de código, arquitetura ou infraestrutura, crie um plano em agents/plans/ usando agents/plans/plan-template.md. Use o script ./agents/plan-and-commit.sh -p <plano> -m "mensagem" para revisar o plano e o diff antes de commitar. Commits que alterem infraestrutura, segurança ou design devem mencionar o plano no PR e podem requerer revisão humana adicional.
+Before significant code, architecture, or infrastructure changes, create a plan in agents/plans/ using agents/plans/plan-template.md. Use the ./agents/plan-and-commit.sh -p <plan> -m "message" script to review the plan and diff before committing. Commits that change infrastructure, security, or design should mention the plan in the PR and may require additional human review.
 
-Consulte agents/README.md para detalhes sobre agentes, gatilhos e políticas relacionadas.
+See agents/README.md for details on agents, triggers, and related policies.
 

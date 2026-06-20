@@ -1,33 +1,33 @@
 # Code of Conduct
 
-## Nossa promessa
+## Our Pledge
 
-Como colaboradores deste projeto, nos comprometemos a respeitar todas as pessoas,
-independentemente de raça, etnia, gênero, identidade de gênero, orientação sexual,
-idade, habilidade física ou mental, aparência, religião ou nacionalidade.
+As contributors to this project, we commit to respecting all people,
+regardless of race, ethnicity, gender, gender identity, sexual orientation,
+age, physical or mental ability, appearance, religion, or nationality.
 
-## Padrões de comportamento
+## Standards of Behavior
 
-Os colaboradores devem:
+Contributors must:
 
-- Ser respeitosos e corteses.
-- Aceitar críticas construtivas com maturidade.
-- Evitar linguagem ou comportamentos abusivos, discriminatórios ou ofensivos.
-- Trabalhar para manter um ambiente inclusivo e seguro.
+- Be respectful and courteous.
+- Accept constructive criticism with maturity.
+- Avoid abusive, discriminatory, or offensive language or behavior.
+- Work to maintain an inclusive and safe environment.
 
-## O que não é aceitável
+## What is Not Acceptable
 
-- Assédio, discriminação ou ataques pessoais.
-- Uso de linguagem sexual explícita ou excessivamente agressiva.
-- Publicação de informações privadas ou confidenciais.
-- Discriminação baseada em características protegidas.
+- Harassment, discrimination, or personal attacks.
+- Use of explicit sexual language or excessively aggressive behavior.
+- Publication of private or confidential information.
+- Discrimination based on protected characteristics.
 
-## Como reportar problemas
+## How to Report Issues
 
-Se você testemunhar ou sofrer comportamento inadequado, reporte para os mantenedores do
-repositório ou use os canais oficiais do projeto.
+If you witness or experience inappropriate behavior, report it to the repository
+maintainers or use the project's official channels.
 
-## Aplicação
+## Enforcement
 
-Os mantenedores reservam-se o direito de remover comentários, bloquear usuários ou
-rejeitar contribuições que violem este código de conduta.
+Maintainers reserve the right to remove comments, block users, or
+reject contributions that violate this code of conduct.
